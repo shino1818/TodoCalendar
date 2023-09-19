@@ -1,0 +1,67 @@
+td{
+    vertical-align: top;
+}
+th{
+    position: relative;
+}
+.thdiv{
+    z-index:1;
+    position: absolute;
+    width: 50px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgb(255, 238, 0);
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+.thp{
+    z-index:2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+table{
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+.trth{
+    height: 25px;
+}
+.trtd{
+    height: 80px;
+}
+#body {
+    min-width: 300px;
+}
+#top_row{
+    min-height: 30px;
+}
+#calendar_row{
+    min-height: 500px;
+}
+#ShowClickedDate_row{
+    min-height: 300px;
+}
+.divdate{
+    border: 1px dotted rgb(255, 196, 0);
+    height: 25px;
+}
+.divtodo{
+    border: 1px dotted rgb(255, 196, 0);
+    height: 80px;
+    overflow: auto;/*Todoがはみ出したらスクロールバー表示*/
+}
+.notcrtMonth{
+    opacity:0.4;/*前月、次月の日にちを透明にする*/
+}
+.listdiv{
+    margin: 2px 1px;
+
+    border-left: medium solid #15ff00;
+}
