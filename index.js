@@ -28,6 +28,7 @@ IDBreq.onsuccess = function (event) {
     Disp();
     showvalue();
 }
+//データベースを持っていない場合にトリガーされる
 IDBreq.onupgradeneeded = function (event) {
     console.log("onupgradeneeded");
     db = this.result;
@@ -36,10 +37,13 @@ IDBreq.onupgradeneeded = function (event) {
         var store = db.createObjectStore(objectstorename, { keyPath: "Date", autoIncrement: false });
         store.createIndex("Date", "Date");
     }
-    before();
+    /*before();
     current();
     after();
-    Disp();
+    Disp();*/
+}
+IDBreq.onerror = function (event) {
+    console.log("error");
 }
 // 値の取得時に呼び出されるコールバック関数
 function showvalue() {
@@ -235,7 +239,7 @@ function Disp(){
     trins();
     arr.forEach((content,index,array) => {
         const td = document.createElement("td");
-        let formatteddate = content.year+addzero(content.month)+addzero(content.date);
+        let formatteddate = content.year.toString()+addzero(content.month)+addzero(content.date);
         targettrid.classList.add("trtd")
         if(ColorCheck(index)!==""){
             td.setAttribute("class", ColorCheck(index));
@@ -301,7 +305,9 @@ function pushButton(index) {
     //console.log(arr[index]);
     clickdate.innerText = cont.year +"年"+ (cont.month+1) +"月"+cont.date+"日"+"("+ChangeDay(cont.day)+")";
     pushdate = cont;
-    keydate = pushdate.year+addzero(pushdate.month)+addzero(pushdate.date);
+    console.log(pushdate.year);
+    keydate = pushdate.year.toString()+addzero(pushdate.month)+addzero(pushdate.date);
+    
     //todoリスト表示初期化
     while(ulselect.firstChild){
         ulselect.removeChild(ulselect.firstChild);
@@ -386,7 +392,7 @@ function saveData(){
 
     let todos = [];
     
-    keydate = pushdate.year+addzero(pushdate.month)+addzero(pushdate.date);
+    keydate = pushdate.year.toString()+addzero(pushdate.month)+addzero(pushdate.date);
 
     for(let i= 0; i<list.length; i++) {
         let todo = {
@@ -414,6 +420,8 @@ function saveData(){
 function addzero(num){
     if( (0<=num) && (num <=9)){
         num = "0"+num;
+    }else{
+        num.toString();
     }
     return num;
 }
